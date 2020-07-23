@@ -110,9 +110,9 @@ let subaru = new Cars("WRX", "Subaru", true)
 // console.log(toyota.allWheelDrive)
 // console.log(subaru);
 // console.log(subaru.brand);
-// console.log(subaru.allWheelDrive);
-toyota.intro()
-subaru.intro()
+// // console.log(subaru.allWheelDrive);
+// toyota.intro()
+// subaru.intro()
 
 
 //---------------------------------------------
@@ -121,51 +121,101 @@ subaru.intro()
 
 //keyword is "class"
 //everything you have to invoke should be inside of the "class"
-class Car {
-    constructor(year, make, model, color) {
-        this.year = year;
-        this.make = make;
-        this.model = model;
-        this.color = color;
+// class Car {
+//     constructor(year, make, model, color) {
+//         this.year = year;
+//         this.make = make;
+//         this.model = model;
+//         this.color = color;
+//     }
+
+//     drive() {
+//         console.log('Vroom');
+//     } //dont forget to always use the "this" if you want to call it.
+//     intro() {
+//         console.log('This car is a '+ this.make + " " + this.model + "!")
+//     }
+// }
+
+// let tesla = new Car(2020, 'Tesla', 'Model S', 'red');
+// console.log(tesla)
+
+// tesla.drive()
+// tesla.intro()
+
+// class GitHubProfile {
+//     constructor(username, name, url) {
+//         this.username = username;
+//         this.name = name;
+//         this.url = url;
+//     }
+//     intro() {
+//         console.log(`My name is ${this.name} and my username is @${this.username}`)
+//     }
+// }
+
+// fetch('https://api.github.com/users/vbatallones')
+
+// .then(response => {
+//     return response.json();
+// })
+// .then(data => {
+//     let gitHubUrl = data.url;
+//     let gitHubName = data.name;
+//     let gitHubUserName = data.login
+
+//     let levin = new GitHubProfile(gitHubUserName, gitHubName, gitHubUrl);
+//     console.log(levin)
+
+//     levin.intro()
+// })
+
+
+//--------------------------------------------
+
+//PROMISE
+
+// ES5: Part 1
+
+let isMomHappy = false;
+
+// Promise
+let willIGetNewPhone = new Promise(
+    function (resolve, reject) {
+        if (isMomHappy) {
+            let phone = {
+                brand: 'Samsung',
+                color: 'black'
+            };
+            resolve(phone); // fulfilled
+        } else {
+            let reason = new Error('mom is not happy');
+            reject(reason); // reject
+        }
+
     }
+);
 
-    drive() {
-        console.log('Vroom');
-    } //dont forget to always use the "this" if you want to call it.
-    intro() {
-        console.log('This car is a '+ this.make + " " + this.model + "!")
-    }
-}
-
-let tesla = new Car(2020, 'Tesla', 'Model S', 'red');
-console.log(tesla)
-
-tesla.drive()
-tesla.intro()
-
-class GitHubProfile {
-    constructor(username, name, url) {
-        this.username = username;
-        this.name = name;
-        this.url = url;
-    }
-    intro() {
-        console.log(`My name is ${this.name} and my username is @${this.username}`)
-    }
-}
-
-fetch('https://api.github.com/users/vbatallones')
-
-.then(response => {
-    return response.json();
+//console.log(willIGetNewPhone)
+//the you are going to wait by ".then" and see for the result
+willIGetNewPhone.then(result => {
+    console.log(result)
 })
-.then(data => {
-    let gitHubUrl = data.url;
-    let gitHubName = data.name;
-    let gitHubUserName = data.login
 
-    let levin = new GitHubProfile(gitHubUserName, gitHubName, gitHubUrl);
-    console.log(levin)
+let goToBed = true;
+//this is already a function so we dont need to do the function
+let willIGotoBed = new Promise((resolve, reject) => {
+    if(goToBed) {
+        let bed = {
+            pillow: 'hug',
+            blanket: 'wrap'
+        };
+        resolve(bed);
+    } else {
+        reject('GO STUDY')
+    }
+});
 
-    levin.intro()
-})
+willIGotoBed.then(result => {
+    console.log(result)
+});
