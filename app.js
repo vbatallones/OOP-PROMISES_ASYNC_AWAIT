@@ -76,7 +76,7 @@ function User(name) {
 
 let adam = new User('Adam');
 
-console.log(adam.name)
+// console.log(adam.name)
 
 function NBAPlayer(name, team, threePointShooter) {
     this.name = name;
@@ -89,8 +89,8 @@ function NBAPlayer(name, team, threePointShooter) {
 
 let steph = new NBAPlayer('Steph Curry', 'Warriors', true)
 
-console.log(steph)
-console.log(steph.name)
+// console.log(steph)
+// console.log(steph.name)
 
 //-----------------------------------------
 
@@ -98,10 +98,74 @@ function Cars (name, brand, allWheelDrive) {
     this.name = name;
     this.brand = brand;
     this.allWheelDrive = allWheelDrive
+    this.intro = function() {
+        console.log("This car is " + this.name)
+    }
 }
 
 let toyota = new Cars("FRZ-86", "Toyota", false)
+let subaru = new Cars("WRX", "Subaru", true)
+// console.log(toyota)
+// console.log(toyota.brand)
+// console.log(toyota.allWheelDrive)
+// console.log(subaru);
+// console.log(subaru.brand);
+// console.log(subaru.allWheelDrive);
+toyota.intro()
+subaru.intro()
 
-console.log(toyota)
-console.log(toyota.brand)
-console.log(toyota.allWheelDrive)
+
+//---------------------------------------------
+
+//CLASS
+
+//keyword is "class"
+//everything you have to invoke should be inside of the "class"
+class Car {
+    constructor(year, make, model, color) {
+        this.year = year;
+        this.make = make;
+        this.model = model;
+        this.color = color;
+    }
+
+    drive() {
+        console.log('Vroom');
+    } //dont forget to always use the "this" if you want to call it.
+    intro() {
+        console.log('This car is a '+ this.make + " " + this.model + "!")
+    }
+}
+
+let tesla = new Car(2020, 'Tesla', 'Model S', 'red');
+console.log(tesla)
+
+tesla.drive()
+tesla.intro()
+
+class GitHubProfile {
+    constructor(username, name, url) {
+        this.username = username;
+        this.name = name;
+        this.url = url;
+    }
+    intro() {
+        console.log(`My name is ${this.name} and my username is @${this.username}`)
+    }
+}
+
+fetch('https://api.github.com/users/vbatallones')
+
+.then(response => {
+    return response.json();
+})
+.then(data => {
+    let gitHubUrl = data.url;
+    let gitHubName = data.name;
+    let gitHubUserName = data.login
+
+    let levin = new GitHubProfile(gitHubUserName, gitHubName, gitHubUrl);
+    console.log(levin)
+
+    levin.intro()
+})
