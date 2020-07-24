@@ -177,45 +177,80 @@ let subaru = new Cars("WRX", "Subaru", true)
 
 // ES5: Part 1
 
-let isMomHappy = false;
+// let isMomHappy = false;
 
-// Promise
-let willIGetNewPhone = new Promise(
-    function (resolve, reject) {
-        if (isMomHappy) {
-            let phone = {
-                brand: 'Samsung',
-                color: 'black'
-            };
-            resolve(phone); // fulfilled
-        } else {
-            let reason = new Error('mom is not happy');
-            reject(reason); // reject
-        }
+// // Promise
+// let willIGetNewPhone = new Promise(
+//     function (resolve, reject) {
+//         if (isMomHappy) {
+//             let phone = {
+//                 brand: 'Samsung',
+//                 color: 'black'
+//             };
+//             resolve(phone); // fulfilled
+//         } else {
+//             let reason = new Error('mom is not happy');
+//             reject(reason); // reject
+//         }
 
-    }
-);
+//     }
+// );
 
 //console.log(willIGetNewPhone)
 //the you are going to wait by ".then" and see for the result
-willIGetNewPhone.then(result => {
-    console.log(result)
-})
+// willIGetNewPhone.then(result => {
+//     console.log(result)
+// })
 
-let goToBed = true;
-//this is already a function so we dont need to do the function
-let willIGotoBed = new Promise((resolve, reject) => {
-    if(goToBed) {
-        let bed = {
-            pillow: 'hug',
-            blanket: 'wrap'
-        };
-        resolve(bed);
-    } else {
-        reject('GO STUDY')
-    }
-});
+// let goToBed = true;
+// //this is already a function so we dont need to do the function
+// let willIGotoBed = new Promise((resolve, reject) => {
+//     if(goToBed) {
+//         let bed = {
+//             pillow: 'hug',
+//             blanket: 'wrap'
+//         };
+//         resolve(bed);
+//     } else {
+//         reject('GO STUDY')
+//     }
+// });
 
-willIGotoBed.then(result => {
-    console.log(result)
-});
+// willIGotoBed.then(result => {
+//     console.log(result)
+// });
+
+
+//----------------------------------------
+
+//ASYNC
+
+//keyword is "async" without the quotes.
+
+// // the fat-arrow will automatically return the response.json(). same as below.
+//     fetch(endpoint).then(response => response.json()); 
+//  //they are the same from above.
+//     fetch(endpoint)
+//     .then(response => {
+//         return response.json();
+//     })
+
+//removing the 'await' will give you the Promise object data
+//with the await it will give you the actual data
+//you cant just use the await anywhere. it should be always inside the "async function!"
+async function printUsers() {
+    const endpoint = 'https://api.github.com/users/vbatallones';
+    let users = await fetch(endpoint).then(response => response.json());
+    console.log(users)
+    
+}
+printUsers();
+
+
+async function printFacebook () {
+    let facebookEndPoint = 'https://api.github.com/users/facebook';
+    let levin = await fetch(facebookEndPoint).then(response => response.json());
+  
+    console.log(levin.login)
+}
+printFacebook();
